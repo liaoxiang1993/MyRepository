@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!-- 默认的视图主题 -->
+    <constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.objectFactory" value="spring" />
+	
+	 <package name="main" namespace="/main" extends="struts-default">
+	 	<default-action-ref name="error"/>
+		 
+		 <global-results>  
+            <result name="success">/WEB-INF/page/success.jsp</result>  
+         </global-results> 
+	 	<action name="main_*" class="mainAction" method="{1}">
+	 		<result name="toAddMember">/WEB-INF/page/add_member.jsp</result>
+	 		<result name="toAddProvider">/WEB-INF/page/add_provider.jsp</result>
+	 		<result name="toAddService">/WEB-INF/page/add_serviec.jsp</result>
+	 		<result name="toMember">/WEB-INF/page/member.jsp</result>
+	 		<result name="toProvider">/WEB-INF/page/provider.jsp</result>
+	 		<result name="toService">/WEB-INF/page/service.jsp</result>
+	 	</action>
+	 </package>
+	 
+	 <package name="member" namespace="/member" extends="main">	 	
+	 	<global-results>
+	 		<result name="success">/WEB-INF/page/success.jsp</result> 
+	 	</global-results>
+	 	<action name="addMember" class="memberAction" method="addMember">
+	 	</action>
+	 	<action name="member" class="memberAction" method="showMember">
+	 		<result name="member">/WEB-INF/page/member.jsp</result>
+	 	</action>
+	 	<action name="updateMember" class="memberAction" method="updateMember">
+	 		<result name="update" type="redirectAction">member</result>
+	 	</action>
+	 	<action name="deleteMember" class="memberAction" method="deleteMember">
+	 		<result name="delete" type="redirectAction">member</result>
+	 	</action>
+	 	<action name="checkMember" class="memberAction" method="checkMember">
+	 	</action>
+	 </package>
+	 
+	 <package name="provider" namespace="/provider" extends="main">
+	 	<action name="addProvider" class="providerAction" method="addProvider">
+	 	</action>
+	 	<action name="provider" class="providerAction" method="showProvider">
+	 		<result name="provider">/WEB-INF/page/provider.jsp</result>
+	 	</action>
+	 	<action name="updateProvider" class="providerAction" method="updateProvider">
+	 		<result name="update" type="redirectAction">provider</result>
+	 	</action>
+	 	<action name="deleteProvider" class="providerAction" method="deleteProvider">
+	 		<result name="delete" type="redirectAction">provider</result>
+	 	</action>
+	 	<action name="checkProvider" class="providerAction" method="checkProvider">
+	 	</action>
+	 </package>
+	 
+	 <package name="service" namespace="/service" extends="main">
+	 	<action name="addService" class="serviceAction" method="addService">
+	 	</action>
+	 	<action name="service" class="serviceAction" method="service">
+	 		<result name="service">/WEB-INF/page/service.jsp</result>
+	 	</action>
+	 	<action name="updateService" class="serviceAction" method="updateService">
+	 		<result name="update" type="redirectAction">service</result>
+	 	</action>
+	 	<action name="deleteService" class="serviceAction" method="deleteService">
+	 		<result name="delete" type="redirectAction">service</result>
+	 	</action>
+	 	<action name="checkService" class="serviceAction" method="checkService">
+	 	</action>
+	 	<action name="service_*" class="serviceAction" method="{1}">
+	 		<result name="recieve">/WEB-INF/page/service_recieve.jsp</result>
+	 		<result name="record">/WEB-INF/page/service_record.jsp</result>
+	 	</action>
+	 </package>
+	 
+	 <package name="test" namespace="/test" extends="main">
+	 	<action name="test" class="test" method="list">
+	 	</action>
+	 </package>
+</struts>
